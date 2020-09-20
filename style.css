@@ -1,0 +1,327 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  overflow-x: hidden;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+.container{
+  width: 100%;         
+  max-width: 117rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+
+
+
+/* Header */
+header{
+  width: 100%;
+  position: absolute; /* removing white space on top of the main image by setting the menu on top of the image */
+  top: 0;
+  left: 0;
+}
+
+
+/* Menu Icons */
+.menu-icons{
+  color: #eee;
+  font-size: 4rem;
+  cursor: pointer;
+  z-index: 1500;
+
+
+  /* Another way of making our element in middle */
+  position: absolute;
+  top: 50%; /* top 50% of nav menu which sit in middle of nav menu */
+  right: 2rem;
+  transform: translateY(-50%);
+
+
+  /* or these code set the menu-icons in the position middle */
+ /* position: absolute;
+ right: 2rem; */
+ 
+
+
+  display: none; 
+}
+
+
+
+/* Navbar */
+nav{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Logo */
+.logo{
+  width: 5rem;
+  height: 5rem;
+  background-color: #eb3007;
+  border-radius: 100%;
+  margin-right: 5rem;
+
+  /* i use display flex because i wanna set my icon stay middle on its container  */
+  display: flex; 
+  /* justify-content: center;
+  align-items: center; */
+}
+
+/* or i can target i element and set margin auto without writing  justify-content: center;      align-items: center; */
+
+.logo i{
+  margin: auto;
+  font-size: 3rem;
+  color: #eee;
+}
+
+
+.nav-list{
+  display: flex;
+  width: 100%;
+}
+
+.nav-list li{
+  line-height: 8rem;
+  position: relative;
+}
+
+.sub-menu li{
+  line-height: 4rem;
+}
+
+.nav-list a{
+  display: block;
+  color: #eee;
+  padding: 0 1.5rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  transition: color 650ms;
+}
+
+.nav-list a:hover{
+  color: #eb3007;
+}
+
+/* btn */
+.btn{
+  display: inline-block;
+  padding: 1.3rem;
+  background-color: #eb3007;
+  border: 2px solid #eb3007;
+  border-radius: 5rem;
+  transition: background-color 650ms;  
+}
+
+.btn:hover{
+  color: #eb3007;
+  background-color: rgba(0,0,0,0.2);
+}
+
+
+/* SubMenu */
+.sub-menu{
+  width: 20rem;
+  display: block;
+  position: absolute;
+  border-top: 3px solid #eb3007;
+  background-color: #191919;
+  z-index: 100;
+  /* top: 16rem; */
+  transition: all 650ms ease;
+  opacity: 0;
+  visibility: hidden;
+
+}
+
+/* Creating arrow for subMenu items */
+.sub-menu::before{
+  content: "";
+  position: absolute;
+  top: -2.5rem;
+  left: 3rem;
+  border: 1.2rem solid transparent;
+  border-bottom-color: #eb3007;
+
+}
+
+/* targeting subMenu inside the subMenu to chang the position of the arrow and border to the left */
+
+.sub-menu .sub-menu::before{
+  position: absolute;
+  top: 0.9rem;
+  left: -2.5rem;
+  border: 1.2rem solid transparent;
+  border-right-color: #eb3007;
+}
+
+.sub-menu .sub-menu{
+  border-top: none;
+  border-left: 3px solid #eb3007;
+  top: 0;
+  left: 100%;
+}
+
+
+/* targeting first submenu of nav list li using (>) => it means first child  also we need to go to submenu and set opacity: 0;  visibility: hidden; to hide until we hover on them */
+.nav-list li:hover > .sub-menu{
+  /* top: 8rem; */
+  opacity: 1;
+  visibility: visible;
+}
+
+/*  */
+.sub-menu li:hover > .sub-menu{
+  top: 0; /* top 0 make the position of sub menu stay exactly infront oh its parent li */
+  /* left: 100%; ??? */
+  
+}
+
+
+/* Book Table btn */
+/* we want to move it to the right */
+li.move-right{
+  margin: auto 0 auto auto; 
+  line-height: initial;
+}
+
+
+/* Showcase */
+.showcase{
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.showcase .content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: #eee;
+}
+
+.showcase .content h1{
+  font-family: 'Kaushan Script', cursive;
+  font-size: 8rem;
+  margin: 2rem 0;
+}
+
+.showcase .content h4{
+  font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.showcase .content p{
+  font-size: 1.6rem;
+  margin-bottom: 5rem;
+}
+
+.showcase .content .btn{
+  font-size: 1.6rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  color: #eee;
+  text-transform: uppercase;
+}
+
+
+@media (max-width: 850px){
+  .nav-list{
+    position: fixed;
+    flex-direction: column;
+    background-color: #191919;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+  }
+
+  .nav-list > li{
+    line-height: 6rem;
+  }
+
+  .sub-menu{
+    position: initial;
+    border:3px solid transparent;
+    border-left-color: #eb3007;
+    margin-left: 1rem;
+    max-height: 0;
+  }
+
+  .sub-menu::before{
+    border: none;
+  }
+
+  .sub-menu .sub-menu::before{
+    border: none;
+  }
+
+  .nav-list li:hover > .sub-menu{
+    opacity: 1;
+    visibility: visible;
+    max-height: initial;
+  }
+
+  li.move-right{
+    margin: 0 auto 0 0;
+    line-height: initial;
+  }
+
+  .menu-icons{
+    display: block;
+  }
+  .menu-icons .fa-times{
+    display: none;
+  }
+
+  nav.active .menu-icons .fa-times{
+    display: block;
+  }
+
+  nav.active .menu-icons .fa-bars{
+    display: none;
+  }
+
+  /* we need to go to display navList to none and by clicking display will be flex */
+  nav.active .nav-list{
+    display: flex;
+  }
+}
+
+
+@media (max-width: 830px){
+  .showcase .content h1{
+      font-size: 4rem;
+  }
+
+  .showcase .content .btn{
+      font-size: 1.2rem;
+  }
+}
